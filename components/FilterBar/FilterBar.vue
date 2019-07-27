@@ -31,6 +31,8 @@ table 的 头部 搜索栏 filter
   </div>
   <!-- 查询按钮 -->
   <el-button class="search-btn" type="primary" @click="clickSearch">查询</el-button>
+  <!-- 重置按钮 -->
+  <el-button @click="reset">重置</el-button>
 </div>
 </template>
 
@@ -38,6 +40,7 @@ table 的 头部 搜索栏 filter
 /**
  * @clickSearch(obj): 查询事件
  * @selectChange(key, val) 选择栏 change事件
+ * @reset(): 重置搜索事件
  * */
 export default {
   name: "FilterBar",
@@ -56,6 +59,7 @@ export default {
     clickSearch() {
       this.$emit('clickSearch', this.obj)
     },
+    reset() { this.emit('reset') },
     $_clearObj() { // 清空 obj
       const obj = this.obj
       this.config.forEach(c => {
