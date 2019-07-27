@@ -1,5 +1,5 @@
 <template>
-<el-form ref="form" v-loading="loading" :model="model" :inline="config.inline"
+<el-form class="comp__normal-form" ref="form" v-loading="loading" :model="model" :inline="config.inline"
          :labelWidth="config.labelWidth || '100px'"
          :labelPosition="config.labelPosition">
   <el-form-item :ref="item.prop" v-for="item in formItemsConfig" :key="item.prop"
@@ -11,6 +11,9 @@
     <!-- select -->
     <el-select v-else-if="item.type=='select'" v-model="model[item.prop]"
                :placeholder="item.placeholder" :class="item.rightClass">
+      <!-- togglePrefix 二值如启/停 时 icon 显示 -->
+      <div v-if="item.togglePrefix" class="select-prefix" slot="prefix"
+         :class="[[undefined, null, ''].indexOf(model[item.prop]) > -1 ? '' : item.togglePrefix.active(model[item.prop]) ? 'green' : 'gray']"></div>
       <el-option v-for="option in item.items" :key="option.value"
         :label="option.label" :value="option.value" />
     </el-select>
@@ -184,8 +187,27 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "~@pro_common/styles/colors.scss";
 .opacity0 {
   opacity: 0;
+}
+.comp__normal-form {
+  $prefixSize: 14px;
+  /deep/ .select-prefix {
+    display: inline-block;
+    width: $prefixSize;
+    height: $prefixSize;
+    border-radius: 50%;
+    position: relative;
+    top: 2px;
+    left: 2px;
+  }
+  /deep/ .select-prefix.green {
+    background-color: $green;
+  }
+  /deep/ .select-prefix.gray {
+    background-color: $level-4-word;
+  }
 }
 </style>

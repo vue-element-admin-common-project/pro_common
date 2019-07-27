@@ -18,16 +18,21 @@ export default {
 <style lang="scss" scoped>
 @import "~@pro_common/styles/colors.scss";
 
+$totalBg: $level-3-border;
 .comp__title-bar {
   height: 40px;
   display: flex;
   align-items: center;
-  background-color: $level-3-border;
+  background-color: $totalBg;
   .left-bar {
-    width: 10px;
+    box-sizing: border-box;
+    width: 12px;
     height: 100%;
     margin-right: 10px;
     background-color: $blue;
+    border-bottom: 2px solid $totalBg;
+    border-top: 1px solid $totalBg;
+    border-left: 2px solid $totalBg;
   }
   $wordSize: 16px;
   .word {

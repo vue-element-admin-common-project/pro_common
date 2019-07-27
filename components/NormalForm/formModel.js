@@ -56,7 +56,12 @@ export const formConfig = {
       rules: [],
       items: [
         { label: 'label', value: '' }
-      ]
+      ],
+      // togglePrefix 二值如启/停 时 icon 显示
+      togglePrefix: {
+        /** 是否为 active 状态 */
+        active: val => console.log(val)
+      }
     },
     { // 单选框
       type: 'radio',

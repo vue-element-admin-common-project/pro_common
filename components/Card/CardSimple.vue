@@ -2,9 +2,7 @@
 <el-card class="comp__card-simple">
   <TitleBar slot="header" :title="title" />
   <!-- 卡片内容 -->
-  <div v-for="o in 4" :key="o" class="text item">
-  {{ '列表内容 ' + o }}
-  </div>
+  <slot name="default"></slot>
 </el-card>
 </template>
 
@@ -30,6 +28,9 @@ export default {
   /deep/.el-card__header {
     padding: 0;
     border-bottom: 0;
+  }
+  /deep/.el-card__body {
+    padding: 15px;
   }
 }
 </style>
